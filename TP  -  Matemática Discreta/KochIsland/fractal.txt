@@ -1,4 +1,0 @@
-Iteração 1:
-F+F+F+F
-Iteração 2:
-F+F-F-FFF+F+F-F+F+F-F-FFF+F+F-F+F+F-F-FFF+F+F-F+F+F-F-FFF+F+F-F
