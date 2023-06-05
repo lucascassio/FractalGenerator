@@ -1,124 +1,97 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+#include <math.h>
 #include <SDL2/SDL.h>
 
-#define WINDOW_WIDTH 800
-#define WINDOW_HEIGHT 600
-#define LINE_LENGTH 5
-#define ANGLE_INCREMENT 90
-#define M_PI 3.14159265358979323846264338327
-
-void drawFractal(SDL_Renderer* renderer, const char* fractal)
-{
-    int x = WINDOW_WIDTH / 2;
-    int y = WINDOW_HEIGHT / 2;
-    int angle = 0;
-
-    for (int i = 0; fractal[i] != '\0'; i++) {
-        switch (fractal[i]) {
-            case 'F':
-                // Calculate the endpoint of the line
-                int dx = LINE_LENGTH * cos(angle * M_PI / 180);
-                int dy = LINE_LENGTH * sin(angle * M_PI / 180);
-                int x2 = x + dx;
-                int y2 = y + dy;
-
-                // Draw the line
-                SDL_RenderDrawLine(renderer, x, y, x2, y2);
-
-                // Update the current position
-                x = x2;
-                y = y2;
-                break;
-            case '+':
-                angle += ANGLE_INCREMENT;
-                break;
-            case '-':
-                angle -= ANGLE_INCREMENT;
-                break;
-            default:
-                // Ignore other characters
-                break;
-        }
-    }
-}
+#ifndef M_PI
+#define M_PI 3.14159265358979323846
+#endif
 
 int main()
 {
-    // Initialize SDL
-    if (SDL_Init(SDL_INIT_VIDEO) != 0) {
-        printf("Failed to initialize SDL: %s\n", SDL_GetError());
-        return 1;
-    }
+  // Ler a string do arquivo
+  FILE* file = fopen("fractal.txt", "r");
+  if (file == NULL) {
+    fprintf(stderr, "Erro ao abrir o arquivo.\n");
+    return 1;
+  }
 
-    // Create a window
-    SDL_Window* window = SDL_CreateWindow("Fractal", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WINDOW_WIDTH, WINDOW_HEIGHT, 0);
-    if (window == NULL) {
-        printf("Failed to create window: %s\n", SDL_GetError());
-        SDL_Quit();
-        return 1;
-    }
+  char current_string[100000];
+  int fractal_started = 0;
 
-    // Create a renderer
-    SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-    if (renderer == NULL) {
-        printf("Failed to create renderer: %s\n", SDL_GetError());
-        SDL_DestroyWindow(window);
-        SDL_Quit();
-        return 1;
-    }
+  // Ler o arquivo até encontrar a seção "Fractal Final"
+  while (fgets(current_string, sizeof(current_string), file)) {
+    if (fractal_started) {
+      // Configurar o SDL2
+      SDL_Init(SDL_INIT_VIDEO);
+      SDL_Window* window = SDL_CreateWindow("Fractal", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 800, 800, SDL_WINDOW_SHOWN);
+      SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
-    // Set the drawing color to white
-    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+      // Configurar a cor da linha e do fundo
+      SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255); // fundo branco
+      SDL_RenderClear(renderer);
+      SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255); // linha azul
 
-    // Clear the renderer
-    SDL_RenderClear(renderer);
+      // Configurar o ponto inicial e o ângulo
+      int x = 250;
+      int y = 400;
+      double direction = 0;
+      double length = 20.0;
+      double theta = 60.0;
 
-    // Read the fractal final from the file
-    FILE* fp = fopen("fractal.txt", "r");
-    if (fp == NULL) {
-        printf("Failed to open the file.\n");
-        SDL_DestroyRenderer(renderer);
-        SDL_DestroyWindow(window);
-        SDL_Quit();
-        return 1;
-    }
-
-    char line[1000000];
-    char fractal[1000000] = {0};
-
-    while (fgets(line, sizeof(line), fp) != NULL) {
-        if (strstr(line, "Fractal Final:") != NULL) {
-            // Read the fractal final string
-            fgets(fractal, sizeof(fractal), fp);
+      // Desenhar o fractal
+      for (int i = 0; current_string[i] != '\0'; i++) {
+        switch (current_string[i]) {
+          case 'F':  // Desenhar uma linha para frente
+            {
+              int new_x = x + (int)(length * cos(direction));
+              int new_y = y + (int)(length * sin(direction));
+              SDL_RenderDrawLine(renderer, x, y, new_x, new_y);
+              x = new_x;
+              y = new_y;
+            }
+            break;
+          case '+':  // Virar à direita
+            {
+              direction += theta * M_PI / 180.0;
+            }
+            break;
+          case '-':  // Virar à esquerda
+            {
+              direction -= theta * M_PI / 180.0;
+            }
+            break;
+          default:  // Ignorar outros símbolos
             break;
         }
-    }
+      }
 
-    fclose(fp);
+      // Atualizar a janela do SDL2
+      SDL_RenderPresent(renderer);
 
-    // Draw the fractal
-    drawFractal(renderer, fractal);
-
-    // Present the rendered image to the screen
-    SDL_RenderPresent(renderer);
-
-    // Wait for the user to close the window
-    SDL_Event event;
-    int running = 1;
-    while (running) {
-        while (SDL_PollEvent(&event)) {
-            if (event.type == SDL_QUIT) {
-                running = 0;
-            }
+      // Aguardar até que a janela seja fechada
+      SDL_Event event;
+      while (SDL_WaitEvent(&event)) {
+        if (event.type == SDL_QUIT) {
+          break;
         }
+      }
+
+      // Encerrar o SDL2
+      SDL_DestroyRenderer(renderer);
+      SDL_DestroyWindow(window);
+      SDL_Quit();
+
+      break;
     }
 
-    // Cleanup and exit
-    SDL_DestroyRenderer(renderer);
-    SDL_DestroyWindow(window);
-    SDL_Quit();
+    if (strstr(current_string, "Fractal Final:") != NULL) {
+      fractal_started = 1;
+    }
+  }
 
-    return 0;
+  // Fechar o arquivo
+  fclose(file);
+
+  return 0;
 }
