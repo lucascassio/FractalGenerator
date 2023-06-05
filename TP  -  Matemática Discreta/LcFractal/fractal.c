@@ -54,6 +54,10 @@ int main()
         strcpy(current_string, next_string);
     }
 
+    // Write the final iteration with 'X' and 'Y'
+    fprintf(fp, "Iteração 4:\n");
+    fprintf(fp, "%s\n", current_string);
+
     // Remove the 'X' and 'Y' symbols from the final string
     char final_string[MAX_STRING_LENGTH] = {0};
     for (i = 0, j = 0; current_string[i] != '\0'; i++) {
@@ -63,8 +67,8 @@ int main()
     }
     final_string[j] = '\0';
 
-    // Write the final iteration
-    fprintf(fp, "fractal final:\n");
+    // Write the fractal final without 'X' and 'Y'
+    fprintf(fp, "Fractal Final:\n");
     fprintf(fp, "%s\n", final_string);
 
     // Close the file
