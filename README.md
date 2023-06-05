@@ -33,16 +33,17 @@ Se você estiver utilizando o Windows e desejar compilar e executar o programa, 
     
  Compile o programa:
 
-    No Linux:
+   No Linux:
+   
     gcc -o generate_fractal fractal.c -lm
 
-    No Windows (usando MinGW-W64):
+   No Windows (usando MinGW-W64):
+   
     gcc -o generate_fractal fractal.c -lm
 
-    Execução
-    Após a compilação do programa, siga as etapas abaixo para executá-lo:
-
-    Execute o programa para gerar a string de instruções do fractal:
+   Execução
+   Após a compilação do programa, siga as etapas abaixo para executá-lo:
+   Execute o programa para gerar a string de instruções do fractal:
 
 No Linux:
 
