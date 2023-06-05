@@ -4,9 +4,8 @@ Instruções de Execução
 
 Os programas foram desenvolvidos e testados em um ambiente Linux (Ubuntu 20.04 LTS) utilizando a linguagem de programação C.
 
-    Pré-requisitos
+Pré-requisitos
     Para compilar e executar o programa, é necessário ter instalado o seguinte componente:
-
     Compilador de C (gcc)
 
 Instalação no Linux (Ubuntu):
@@ -24,15 +23,15 @@ Se você estiver utilizando o Windows e desejar compilar e executar o programa, 
         Selecione a versão apropriada para o seu sistema (32 bits ou 64 bits).
         Execute o instalador e siga as instruções para concluir a instalação.
         Certifique-se de adicionar o diretório bin do MinGW-W64 ao PATH do sistema para que o compilador gcc seja acessível a partir do prompt de comando.
-
-    Compilação
-    Para compilar o programa, siga as etapas abaixo:
+        
+  Compilação
+  Para compilar o programa, siga as etapas abaixo:
 
     Abra um terminal (no Linux) ou prompt de comando (no Windows).
 
     Navegue até o diretório onde o arquivo de código-fonte está localizado.
-
-    Compile o programa:
+    
+ Compile o programa:
 
     No Linux:
     gcc -o generate_fractal fractal.c -lm
@@ -45,22 +44,24 @@ Se você estiver utilizando o Windows e desejar compilar e executar o programa, 
 
     Execute o programa para gerar a string de instruções do fractal:
 
-    No Linux:
+No Linux:
+
     ./generate_fractal
 
-    No Windows:
+ No Windows:
+ 
     generate_fractal.exe
 
-    Isso criará um arquivo chamado "fractal.txt" no diretório atual, contendo a string de instruções para o fractal.
+ Isso criará um arquivo chamado "fractal.txt" no diretório atual, contendo a string de instruções para o fractal.
 
-    Opcional: Visualização do Fractal
-    Se desejar visualizar o fractal gerado, você precisará da biblioteca gráfica SDL2 instalada. No entanto, observe que a biblioteca SDL2 é mais comumente usada em sistemas Linux.
+Opcional: Visualização do Fractal
+Se desejar visualizar o fractal gerado, você precisará da biblioteca gráfica SDL2 instalada. No entanto, observe que a biblioteca SDL2 é mais comumente usada em sistemas Linux.
 
 Instalação no Linux (Ubuntu):
 Siga as instruções abaixo para instalar a biblioteca gráfica SDL2:
 
-sudo apt update
-sudo apt install libsdl2-dev
+    sudo apt update
+    sudo apt install libsdl2-dev
 
 Instalação no Windows (opcional):
 Se você estiver utilizando o Windows e desejar instalar a biblioteca gráfica SDL2, siga as etapas abaixo:
@@ -74,24 +75,28 @@ Se você estiver utilizando o Windows e desejar instalar a biblioteca gráfica S
 Compilação e execução do programa de visualização (opcional):
 Após ter a biblioteca SDL2 instalada, siga as etapas abaixo:
 
-    Abra um terminal (no Linux) ou prompt de comando (no Windows).
+   Abra um terminal (no Linux) ou prompt de comando (no Windows).
 
-    Navegue até o diretório onde o arquivo de código-fonte está localizado.
+   Navegue até o diretório onde o arquivo de código-fonte está localizado.
 
-    Compile o programa de visualização:
+   Compile o programa de visualização:
 
-    No Linux:
+No Linux:
+
     gcc -o visualize_fractal fDraw.c -lSDL2 -lm
 
-    No Windows (usando MinGW-W64):
+No Windows (usando MinGW-W64):
+
     gcc -o visualize_fractal fDraw.c -lmingw32 -lSDL2main -lSDL2 -lm
 
-    Execute o programa de visualização do fractal:
+Execute o programa de visualização do fractal:
 
-    No Linux:
+No Linux:
+
     ./visualize_fractal
 
-    No Windows:
+No Windows:
+
     visualize_fractal.exe
 
 Isso abrirá uma janela exibindo o fractal desenhado com base na string de instruções do arquivo "fractal.txt". Certifique-se de ter a biblioteca gráfica SDL2 instalada para executar este programa. Observe que a visualização do fractal é opcional e a biblioteca SDL2 é mais comumente usada em sistemas Linux. Caso contrário, você pode ignorar essa etapa.
