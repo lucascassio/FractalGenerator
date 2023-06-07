@@ -53,6 +53,7 @@ No Windows:
     Isso criará um arquivo chamado "fractal.txt" no diretório atual, contendo a string de instruções para o fractal.
     
 ---------------------------------------------------------------------------------------------------------------------------------    
+
 OPCIONAL : VISUALIZACAO DO FRACTAL - Observe que a visualização do fractal é opcional e a biblioteca SDL2 é mais comumente usada em sistemas Linux. Caso nao queira visualizar o fractal graficamente, você pode ignorar essa etapa.
 
 Se desejar visualizar o fractal gerado, você precisará da biblioteca gráfica SDL2 instalada. No entanto, observe que a         
