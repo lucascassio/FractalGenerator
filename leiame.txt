@@ -3,10 +3,24 @@ Ambiente Computacional - Instruções de Execução
 Os programas foram desenvolvidos e testados em um ambiente Linux (Ubuntu 20.04 LTS), logo, é preferível que o usuário também utilize de um sistema linux (Ubuntu), para evitar problemas indesejados.
 
 Pré-requisitos
+
     Para compilar e executar o programa, é necessário ter instalado o seguinte componente:
     Compilador de C (gcc)
+    
+Organização das pastas:
 
+    Cada pasta carrega dois programas, o fractal.c e fDraw.c.
+    O fractal.c é o arquivo usado para gerar a sequência de caracteres resultante, a partir da entrada do axioma e da regra.
+    O fDraw.c é o arquivo usado para desenhar o fractal, e sua execução é TOTALMENTE OPCIONAL.
+    
+    Cada pasta tem o nome do fractal correspondente a ela, portanto, seguem os fractais e o nome das pastas de cada um:
+    
+    Fractal Ilha de Koch -> pasta "KochIsland"
+    Fractal Preenchimento de espaço de Hilbert -> pasta "HilbertFractal"
+    Fractal criado por mim -> pasta "LcFractal"
+    
 Instalação no Linux (Ubuntu):
+
 Siga as instruções abaixo para configurar o ambiente e executar o programa:
     Instale o compilador de C (gcc):
     
@@ -78,6 +92,6 @@ Compile o programa de visualização:
 Execute o programa de visualização do fractal:
     ./visualize_fractal
 
-Isso abrirá uma janela exibindo o fractal desenhado com base na string de instruções do arquivo "fractal.txt". Certifique-se       de ter a biblioteca gráfica SDL2 instalada para executar este programa.
+Isso abrirá uma janela exibindo o fractal desenhado com base na string de instruções do arquivo "fractal.txt". Certifique-se     de ter a biblioteca gráfica SDL2 instalada para executar este programa.
 
 Para fechar a janela do visualizador de fractal, clique no botão de fechar ou pressione a tecla "Esc".
