@@ -6,8 +6,27 @@ Pré-requisitos
 
     Para compilar e executar o programa, é necessário ter instalado o seguinte componente:
     Compilador de C (gcc)
-    
-Organização das pastas:
+
+Instalação do compilador no Linux (Ubuntu):
+
+Siga as instruções abaixo para configurar o ambiente e executar o programa:
+
+    Instale o compilador de C (gcc):
+    sudo apt update
+    sudo apt install build-essential
+
+Instalação no Windows (opcional):
+
+Se você estiver utilizando o Windows (Não é recomendado) e desejar compilar e executar o programa, siga as etapas abaixo:
+
+    Instale o compilador de C (gcc) usando o MinGW-W64:
+        Baixe o MinGW-W64 do site oficial: https://mingw-w64.org/doku.php
+        Selecione a versão apropriada para o seu sistema (32 bits ou 64 bits).
+        Execute o instalador e siga as instruções para concluir a instalação.
+        Certifique-se de adicionar o diretório bin do MinGW-W64 ao PATH do sistema para que o compilador gcc seja acessível a partir do prompt de comando.
+
+
+Organização das pastas
 
     Cada pasta carrega dois programas, o fractal.c e fDraw.c.
     O fractal.c é o arquivo usado para gerar a sequência de caracteres resultante, a partir da entrada do axioma e da regra.
@@ -18,23 +37,7 @@ Organização das pastas:
     Fractal Ilha de Koch -> pasta "KochIsland"
     Fractal Preenchimento de espaço de Hilbert -> pasta "HilbertFractal"
     Fractal criado por mim -> pasta "LcFractal"
-    
-Instalação no Linux (Ubuntu):
 
-Siga as instruções abaixo para configurar o ambiente e executar o programa:
-    Instale o compilador de C (gcc):
-    
-    sudo apt update
-    sudo apt install build-essential
-
-Instalação no Windows (opcional):
-Se você estiver utilizando o Windows e desejar compilar e executar o programa, siga as etapas abaixo:
-
-    Instale o compilador de C (gcc) usando o MinGW-W64:
-        Baixe o MinGW-W64 do site oficial: https://mingw-w64.org/doku.php
-        Selecione a versão apropriada para o seu sistema (32 bits ou 64 bits).
-        Execute o instalador e siga as instruções para concluir a instalação.
-        Certifique-se de adicionar o diretório bin do MinGW-W64 ao PATH do sistema para que o compilador gcc seja acessível a partir do prompt de comando.
 
 Compilação
 
@@ -51,6 +54,7 @@ No Linux:
 
 No Windows (usando MinGW-W64):
     gcc -o generate_fractal fractal.c -lm
+
 
 Execução
 
@@ -69,6 +73,7 @@ Isso criará um arquivo chamado "fractal.txt" no diretório atual, contendo a st
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------    
 
 OPCIONAL : VISUALIZACAO DO FRACTAL 
+
 Observe que a visualização do fractal é opcional e a biblioteca SDL2 é mais comumente usada em sistemas Linux.
 Caso nao queira visualizar o fractal graficamente, você pode ignorar essa etapa.
 Se desejar visualizar o fractal gerado, você precisará da biblioteca gráfica SDL2 instalada. No entanto, observe que a biblioteca SDL2 é mais comumente usada em sistemas Linux.
