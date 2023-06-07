@@ -33,11 +33,11 @@ int main()
       SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255); // linha azul
 
       // Configurar o ponto inicial e o ângulo
-      int x = 250;
+      int x = 220;
       int y = 400;
       double direction = 0;
-      double length = 20.0;
-      double theta = 60.0;
+      double length = 1.4;
+      double theta = 90.0;
 
       // Desenhar o fractal
       for (int i = 0; current_string[i] != '\0'; i++) {
