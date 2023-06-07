@@ -50,7 +50,7 @@ No Linux:
 No Windows:
     generate_fractal.exe
 
-    Isso criará um arquivo chamado "fractal.txt" no diretório atual, contendo a string de instruções para o fractal.
+Isso criará um arquivo chamado "fractal.txt" no diretório atual, contendo a string de instruções para o fractal.
     
 ---------------------------------------------------------------------------------------------------------------------------------    
 
