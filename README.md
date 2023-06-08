@@ -77,7 +77,8 @@ Atualize os pacotes:
 Instale a biblioteca gráfica SDL2:
 
     sudo apt install libsdl2-dev
-    Instalação no Windows (opcional):
+    
+Instalação no Windows (opcional):
 
 Se você estiver utilizando o Windows e desejar instalar a biblioteca gráfica SDL2, siga as etapas abaixo:
 
